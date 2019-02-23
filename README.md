@@ -46,7 +46,8 @@ TO DO
 Fork Author
 ------------------
 Andrew Niese
-Fresh Software LLC
+[Fresh Software LLC](https://freshsoftware.com)
+for [Fixity.io](https://fixity.io)
 
 Original Author
 ------------------
