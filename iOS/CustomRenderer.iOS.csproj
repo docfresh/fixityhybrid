@@ -114,6 +114,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
     <Compile Include="MessageIOS.cs" />
+    <Compile Include="MyDownloader.cs" />
+    <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />

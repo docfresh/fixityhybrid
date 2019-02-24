@@ -7,7 +7,7 @@ using ObjCRuntime;
 using WebKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-
+using System.Net;
 
 
 
@@ -103,11 +103,15 @@ namespace CustomRenderer.iOS
                     if (url.AbsoluteUrl.AbsoluteString.Contains("download.wx"))
                     {
                         //wisej download: cancel navigation and open in new Safari window.
-                        decisionHandler(WKNavigationActionPolicy.Cancel);
-                        Device.OpenUri(new Uri(url.AbsoluteString));
+                        //decisionHandler(WKNavigationActionPolicy.Cancel);
+                        //Device.OpenUri(new Uri(url.AbsoluteString));
 
                         //Ideally, this would download the file to the users's home folder and then open it locally.
-
+                        decisionHandler(WKNavigationActionPolicy.Cancel);
+                        //Xamarin.Forms.DependencyService.Get<IMessage>().ShortAlert("Downloading...");
+                        var fileName = MyDownloader.DownloadAndWriteFile(url.AbsoluteString);
+                        //Xamarin.Forms.DependencyService.Get<IMessage>().CancelAlert(); //kill alert so preview window can pop up in next call.
+                        MyDownloader.OpenFileByName(fileName);
                     }
                     else
                     {
@@ -123,6 +127,7 @@ namespace CustomRenderer.iOS
             }
 
         }
+
 
 
 

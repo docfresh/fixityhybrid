@@ -36,6 +36,7 @@ namespace CustomRenderer.Droid
                 //DownloadWiseJFile(view, url);
                 var strFilename = DownloadAndWriteFile(view, url);
                 OpenLocalPdf(view, strFilename);
+                return true;
             }
             else if (url != null && url.StartsWith("https://fixity.io"))
             {
@@ -112,6 +113,9 @@ namespace CustomRenderer.Droid
         //Download file with WebClient, parse filename from header, write to downloads directory (not async yet!)
         public string DownloadAndWriteFile(WebView view, string url)
         {
+
+            Xamarin.Forms.DependencyService.Get<IMessage>().ShortAlert("Downloading...");
+
             var pathFile = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
             var absolutePath = pathFile.AbsolutePath;
             var pathToNewFolder = absolutePath + "/Fixity";           

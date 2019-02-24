@@ -27,6 +27,15 @@ namespace CustomRenderer.iOS
             ShowAlert(message, SHORT_DELAY);
         }
 
+        public void CancelAlert()
+        {
+            dismissMessage();
+        }
+
+
+
+
+
         void ShowAlert(string message, double seconds)
         {
             alertDelay = NSTimer.CreateScheduledTimer(seconds, (obj) =>
