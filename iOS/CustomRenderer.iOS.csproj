@@ -108,6 +108,8 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <InterfaceDefinition Include="LaunchScreen2.storyboard" />
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -177,6 +179,132 @@
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\LaunchImage~iphone_640x960.png">
       <Visible>false</Visible>
     </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-20x20%401x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-20x20%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-20x20%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-29x29%401x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-29x29%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-29x29%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-40x40%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-40x40%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-60x60%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-60x60%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-76x76%401x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-76x76%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-83.5%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Icon-marketing-1024x1024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-1125%403x~iphoneX-portrait_1125x2436.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-1242%403x~iphone6s-landscape_2208x1242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-1242%403x~iphone6s-portrait_1242x2208.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-2436%403x~iphoneX-landscape_2436x1125.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-568h%402x~iphone_640x1136.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-750%402x~iphone6-landscape_1334x750.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-750%402x~iphone6-portrait_750x1334.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Landscape%402x~ipad_2048x1496.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Landscape%402x~ipad_2048x1536.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Landscape%402x~ipad_2224x1668.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Landscape%402x~ipad_2732x2048.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Landscape~ipad_1024x748.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Landscape~ipad_1024x768.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Portrait%402x~ipad_1536x2008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Portrait%402x~ipad_1536x2048.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Portrait%402x~ipad_1668x2224.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Portrait%402x~ipad_2048x2732.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage-Portrait~ipad_768x1024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage~ipad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage~iphone-320x480.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\LaunchImage~iphone_640x960.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\used\apple-touch-startup-image-1024x748.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\used\apple-touch-startup-image-1536x2008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\used\apple-touch-startup-image-2048x1496.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\used\apple-touch-startup-image-640x1136.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\used\apple-touch-startup-image-640x960.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\used\apple-touch-startup-image-768x1004.png" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup />

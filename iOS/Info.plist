@@ -58,7 +58,7 @@
 		<string>Icon-Small@3x</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>LaunchScreen2</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -74,8 +74,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>UIMainStoryboardFile</key>
-	<string>LaunchScreen</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -100,5 +98,11 @@
 	<string>Need location for geolocator plugin.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need location for geolocator plugin.</string>
+	<key>XSAppIconAssets</key>
+	<string>Media.xcassets/AppIcons.appiconset</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Media.xcassets/LaunchImages.launchimage</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen2</string>
 </dict>
 </plist>
