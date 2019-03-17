@@ -55,7 +55,8 @@ namespace CustomRenderer.iOS
             if (e.NewElement != null) {
                 //string fileName = Path.Combine (NSBundle.MainBundle.BundlePath, string.Format ("Content/{0}", Element.Uri));
                 //Control.LoadRequest (new NSUrlRequest (new NSUrl (fileName, false)));
-                Control.LoadRequest(new NSUrlRequest(new NSUrl("https://fixity.io/?hybrid=1"))); //force load of fixity.io 
+                //Control.LoadRequest(new NSUrlRequest(new NSUrl("https://fixity.io/?hybrid=1"))); //force load of fixity.io 
+                Control.LoadRequest(new NSUrlRequest(new NSUrl(e.NewElement.Uri))); //force load of fixity.io 
             }
 
             Control.Configuration.Preferences.JavaScriptEnabled = true;
@@ -75,7 +76,7 @@ namespace CustomRenderer.iOS
             public override void DecidePolicy(WKWebView webView, WKNavigationAction navigationAction, Action<WKNavigationActionPolicy> decisionHandler)
             {
                // base.DecidePolicy(webView, navigationAction, decisionHandler);
-
+               
                 if (navigationAction.NavigationType == WKNavigationType.LinkActivated) {
                     var url = navigationAction.Request.Url;
                     if (url.AbsoluteUrl.AbsoluteString.StartsWith("https://fixity.io")) //Whatever your test happens to be
@@ -92,6 +93,7 @@ namespace CustomRenderer.iOS
                     {
                         //tel:, sms: , and URLs outside the fixity.io domain
                         decisionHandler(WKNavigationActionPolicy.Cancel);
+                        //webView.LoadFileUrl()
                         Device.OpenUri(new Uri(url.AbsoluteString));
                     }
 

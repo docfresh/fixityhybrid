@@ -6,10 +6,11 @@ namespace CustomRenderer
 {
 	public class HybridWebViewPageCS : ContentPage
 	{
-		public HybridWebViewPageCS ()
+		public HybridWebViewPageCS (string theUri)
 		{
 			var hybridWebView = new HybridWebView {
-                Uri = "https://fixity.io/?hybrid=1",
+                //Uri = "https://fixity.io/?hybrid=1",
+                Uri = theUri, 
                 //Uri = "https://mobilehtml5.org/ts/?id=23",
                 //Uri = "https://freshsoftware.com/camera.html",
                 HorizontalOptions = LayoutOptions.FillAndExpand,

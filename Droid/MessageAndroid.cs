@@ -24,6 +24,12 @@ namespace CustomRenderer.Droid
         {
             Toast.MakeText(Application.Context, message, ToastLength.Short).Show();
         }
+
+
+        public void CancelAlert()
+        {
+            //dismissMessage();
+        }
     }
 
 }

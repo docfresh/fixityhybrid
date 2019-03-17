@@ -60,11 +60,15 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignEntitlements>
+    </CodesignEntitlements>
     <MtouchProfiling>true</MtouchProfiling>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Andrew Niese (CRHA4WC697)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -112,6 +116,7 @@
     <BundleResource Include="Resources\bundle\iOS\AppIcon.appiconset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseUrl_iOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
@@ -305,6 +310,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\bundle\iOS\LaunchImage.launchimage\used\apple-touch-startup-image-768x1004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="offline.html" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup />
