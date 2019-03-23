@@ -26,6 +26,8 @@
     <MtouchProfiling>true</MtouchProfiling>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
+    <CodesignKey>iPhone Developer: Andrew Niese (CRHA4WC697)</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>

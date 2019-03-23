@@ -19,7 +19,6 @@ namespace CustomRenderer.iOS
 		const string JavaScriptFunction = "function invokeCSharpAction(data){window.webkit.messageHandlers.invokeAction.postMessage(data);}";
         WKUserContentController userController;
 
-        
 
         protected override void OnElementChanged (ElementChangedEventArgs<HybridWebView> e)
 		{
@@ -37,6 +36,11 @@ namespace CustomRenderer.iOS
                 webView.Configuration.Preferences.JavaScriptEnabled = true;
                 webView.Configuration.Preferences.JavaScriptCanOpenWindowsAutomatically = true; //allow application.navigatye in wisej
 
+                //https://forums.xamarin.com/discussion/9791/set-a-top-margin-for-a-webview-in-ios
+                
+                //webView.ScrollView.ContentInset = new UIKit.UIEdgeInsets(40, 0,0 , 0);
+                //webView.ScrollView.BackgroundColor = UIKit.UIColor.Clear;
+                //webView.BackgroundColor = UIKit.UIColor.Clear;
 
                 SetNativeControl(webView);
 
