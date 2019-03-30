@@ -41,6 +41,8 @@ namespace CustomRenderer.iOS
                 //webView.ScrollView.ContentInset = new UIKit.UIEdgeInsets(40, 0,0 , 0);
                 //webView.ScrollView.BackgroundColor = UIKit.UIColor.Clear;
                 //webView.BackgroundColor = UIKit.UIColor.Clear;
+                
+                
 
                 SetNativeControl(webView);
 
@@ -65,6 +67,7 @@ namespace CustomRenderer.iOS
 
             Control.Configuration.Preferences.JavaScriptEnabled = true;
             Control.Configuration.Preferences.JavaScriptCanOpenWindowsAutomatically = true; //allow application.navigatye in wisej
+            
             //Control.Configuration.Preferences.
 
         }

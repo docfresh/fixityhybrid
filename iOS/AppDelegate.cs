@@ -1,4 +1,5 @@
 ﻿using Foundation;
+//using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using UIKit;
 
 namespace CustomRenderer.iOS
@@ -12,7 +13,10 @@ namespace CustomRenderer.iOS
 
 			LoadApplication (new App ());
 
-			return base.FinishedLaunching (app, options);
+            //KeyboardOverlapRenderer.Init(KeyboardOverlapRenderer.OverlapType.Collapse);
+
+
+            return base.FinishedLaunching (app, options);
 		}
 	}
 }
