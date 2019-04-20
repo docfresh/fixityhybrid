@@ -53,7 +53,8 @@ namespace CustomRenderer.Droid
 
             Control.ClearCache(false);
             Control.Settings.JavaScriptEnabled = true;
-
+            Control.Settings.SetGeolocationEnabled(true);
+            Control.Settings.DomStorageEnabled = true;
             //set permissions true to debug application.navigate bug
             //Control.Settings.AllowContentAccess = true;
             //Control.Settings.AllowFileAccess = true;

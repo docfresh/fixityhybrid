@@ -2,56 +2,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Fixity - Offline</title>
-<style type="text/css">
-.auto-style1 {
-	text-align: center;
-}
-.auto-style2 {
-	text-align: center;
-	color: #FFFF98;
-	font-size: large;
-}
-</style>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <Meta Name="viewport" Content="width=device-width, initial-scale=1.0, user-scalable=1" />
 
-<!-- register for connection events -->
-<script type="application/javascript">
+    <title>Fixity - Offline</title>
+    <style type="text/css">
+        .auto-style1 {
+            text-align: center;
+        }
 
-function doOnline() {
-	// Show a different icon based on offline/online
-	window.location.replace('https://fixity.io/?hybrid=1');
-}
+        .auto-style2 {
+            text-align: center;
+            color: #FFFF98;
+            font-size: large;
+        }
+    </style>
 
-	// Update the online status icon based on connectivity
-	window.addEventListener('online',  doOnline);
-</script>
+    <!-- register for connection events -->
+    <script type="application/javascript">
+
+        function doOnline() {
+            // Show a different icon based on offline/online
+            window.location.replace('https://fixity.io/?hybrid=1');
+        }
+
+            // Update the online status icon based on connectivity
+            window.addEventListener('online',  doOnline);
+    </script>
 
 
 </head>
 
 <body style="color: #FFFFFF; background-color: #000000">
 
-<table style="width: 100%">
-	<tr>
-		<td class="auto-style1">
-			<img src="data:image/png;base64,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">
-		</td>
-	</tr>
-	<tr>
-		<td class="auto-style2"><strong>No network connection</strong></td>
-	</tr>
-	<tr>
-		<td class="auto-style1">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="auto-style1">Fixity requires an Internet connection.<br />
-		We will attempt to connect when you are online again.<br />
-		You can manually retry here:<br />
-		<br />
-		<a href="https://fixity.io/?hybrid=1">Reload</a></td>
-	</tr>
-</table>
+    <table style="width: 100%">
+        <tr>
+            <td class="auto-style1">
+                <img src="data:image/png;base64,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" />
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style2"><strong>No network connection</strong></td>
+        </tr>
+        <tr>
+            <td class="auto-style1">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                Fixity requires an Internet connection.<br />
+                We'll attempt to connect when you are online.<br /><br />
+                You can manually retry here:<br />
+                <br />
+                <a href="https://fixity.io/?hybrid=1">Reload</a>
+            </td>
+        </tr>
+    </table>
 
 </body>
 

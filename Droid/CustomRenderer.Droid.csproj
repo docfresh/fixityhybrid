@@ -47,6 +47,8 @@
     <EnableProguard>false</EnableProguard>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
+    <DefineConstants>DEBUG</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
@@ -115,5 +117,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\offline.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\provider_paths.xml" />
   </ItemGroup>
 </Project>

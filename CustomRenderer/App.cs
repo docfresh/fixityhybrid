@@ -48,6 +48,14 @@ namespace CustomRenderer
                 MainPage = new HybridWebViewPage("https://fixity.io/?hybrid=1");
             }
 
+            if (Device.RuntimePlatform.Equals(Device.Android))
+            {
+
+            }
+
+
+            //
+
 
         }
 

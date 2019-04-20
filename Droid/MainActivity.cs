@@ -5,7 +5,8 @@ using Android.Webkit;
 
 using Android.Gms.Common.Apis;
 using Android.Gms.Location;
-
+using System.Threading.Tasks;
+using Android;
 
 namespace CustomRenderer.Droid
 {
@@ -25,9 +26,30 @@ namespace CustomRenderer.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             turnOnGps(this);
-            LoadApplication(new App());
+            askForPermission(this);
+            //LoadApplication(new App());
         }
 
+        public override async void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            if (grantResults[0] == Permission.Granted)
+            {
+                //Permission granted
+                //var snack = Snackbar.Make(layout, "Location permission is available, getting lat/long.", Snackbar.LengthShort);
+                //snack.Show();
+                LoadApplication(new App());
+            }
+            else
+            {
+                //Permission Denied :(
+                //Disabling location functionality
+                //var snack = Snackbar.Make(layout, "Location permission is denied.", Snackbar.LengthShort);
+                //snack.Show();
+                    Xamarin.Forms.DependencyService.Get<IMessage>().LongAlert("Fixity may not work without proper permissions");
+                    LoadApplication(new App());
+                }
+                    
+        }
 
         //This procedure calls 
         //not sure if im calling this right. 
@@ -69,6 +91,52 @@ namespace CustomRenderer.Droid
             }
         }
 
+        public async void askForPermission(MainActivity activity)
+        {
+            if (Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.AccessFineLocation) == (int)Permission.Granted)
+            {
+                // We have permission, go ahead and use the camera.
+                Android.Util.Log.WriteLine(Android.Util.LogPriority.Debug, "Fixity.io", "Location permission is on");
+                LoadApplication(new App());
+
+            }
+            else
+            {
+                // Camera permission is not granted. If necessary display rationale & request.
+                //Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new System.String[] { Android.Manifest.Permission.AccessFineLocation }, REQUEST_LOCATION);
+                await GetLocationPermissionAsync();
+            }
+
+        }
+
+        async Task GetLocationPermissionAsync()
+        {
+
+            string[] PermissionsLocation =
+              {
+                  Manifest.Permission.AccessFineLocation, Manifest.Permission.Camera, Manifest.Permission.ReadExternalStorage,Manifest.Permission.WriteExternalStorage
+                };
+
+            const int RequestLocationId = 0;
+            //Check to see if any permission in our group is available, if one, then all are
+            const string permission = Manifest.Permission.AccessFineLocation;
+            if (CheckSelfPermission(permission) == (int)Permission.Granted)
+            {
+                return;
+            }
+
+            //need to request permission
+            //if (ShouldShowRequestPermissionRationale(permission))
+            //{
+                //Explain to the user why we need to read the contacts
+                //Snackbar.Make(layout, "Location access is required to show coffee shops nearby.", Snackbar.LengthIndefinite)
+                        //.SetAction("OK", v => RequestPermissions(PermissionsLocation, RequestLocationId))
+                        //.Show();
+            //    return;
+            //}
+            //Finally request permissions with the list of permissions and Id
+            RequestPermissions(PermissionsLocation, RequestLocationId);
+        }
 
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)

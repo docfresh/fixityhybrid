@@ -35,7 +35,17 @@ namespace CustomRenderer.Droid
                 //Xamarin.Forms.Device.OpenUri(new Uri(url.AbsoluteString));
                 //DownloadWiseJFile(view, url);
                 var strFilename = DownloadAndWriteFile(view, url);
-                OpenLocalPdf(view, strFilename);
+                if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.N)
+                {
+                    // Do things the API >= 24 way
+                    OpenLocalPdf(view, strFilename, view.Context);
+                }
+                else
+                {
+                    // Do things the old way
+                    OpenLocalPdfClassic(view, strFilename);
+                }
+                
                 return true;
             }
             else if (url != null && url.StartsWith("https://fixity.io"))
@@ -58,11 +68,25 @@ namespace CustomRenderer.Droid
                 view.Context.StartActivity(mapIntent);
                 return true; //abort loading in the webview.
             }
-            else if (url!= null && url.Contains("facebook.com"))
+            else if (url!= null && url.Contains("facebook.com") && (url.Contains("dialog/oauth?") || url.Contains("login.php")))
             {
                 //do a facebook login or say that we cant.
-                Xamarin.Forms.DependencyService.Get<IMessage>().ShortAlert("Facebook login not yet working on hybrid app.");
+                Xamarin.Forms.DependencyService.Get<IMessage>().LongAlert("Facebook login does not work yet on hybrid app.");
                 return true;  //abort loading in the webview.
+                //return false;//give embedded oauth a chance.
+            }
+            else if (url != null && url.Contains("facebook.com")) 
+            {
+                //facebook share dialog.
+                //Xamarin.Forms.DependencyService.Get<IMessage>().ShortAlert("Facebook login not yet working on hybrid app.");
+                //return false;// return true;  //abort loading in the webview.
+
+                var fbUri = Android.Net.Uri.Parse(url);
+                var fbIntent = new Intent(Intent.ActionView, fbUri);
+                //fbIntent.AddFlags(ActivityFlags.)
+                view.Context.StartActivity(fbIntent);
+                return true; //abort loading in the webview.
+
             }
             else
             {
@@ -116,6 +140,7 @@ namespace CustomRenderer.Droid
 
             Xamarin.Forms.DependencyService.Get<IMessage>().ShortAlert("Downloading...");
 
+            //var pathFile = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
             var pathFile = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
             var absolutePath = pathFile.AbsolutePath;
             var pathToNewFolder = absolutePath + "/Fixity";           
@@ -167,23 +192,57 @@ namespace CustomRenderer.Droid
         }
 
 
-        //opens a local pdf file in native viewer
-        public void OpenLocalPdf(WebView view, string filePath)
+        //opens a local pdf file in native viewer, for API 23 and lower
+        public void OpenLocalPdfClassic(WebView view, string filePath)
         {
             Android.Net.Uri uri = Android.Net.Uri.Parse("file:///" + filePath);
             Intent intent = new Intent(Intent.ActionView);
             intent.SetDataAndType(uri, "application/pdf");
             intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
+            intent.AddFlags(ActivityFlags.GrantReadUriPermission);
 
             try
             {
                 view.Context.StartActivity(intent);
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 //Toast.MakeText(Xamarin.Forms.Forms.Context, "No Application Available to View PDF", ToastLength.Short).Show();
-                Console.WriteLine("error");
+                Console.WriteLine("error: " + ex.Message);
             }
+        }
+
+
+        //open local file, API 24 and above
+        public void OpenLocalPdf(WebView view, string filePath, Context context)
+        {
+
+
+
+            //Android.Net.Uri uri = Android.Net.Uri.Parse("file:///" + filePath);
+            //Android.Net.Uri uri = Android.Net.Uri.FromFile()
+
+
+            // Android.Net.Uri pdfPath = Android.Net.Uri.FromFile(new Java.IO.File(filePath));
+            Android.Net.Uri pdfPath = Android.Support.V4.Content.FileProvider.GetUriForFile(context, "com.fresh.fixityio.fileprovider", new Java.IO.File(filePath));
+
+
+            Intent intent = new Intent(Intent.ActionView);
+            intent.SetDataAndType(pdfPath, "application/pdf");
+            intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
+            intent.AddFlags(ActivityFlags.GrantReadUriPermission);
+
+            try
+            {
+                view.Context.StartActivity(intent);
+            }
+            catch (System.Exception ex)
+            {
+                //Toast.MakeText(Xamarin.Forms.Forms.Context, "No Application Available to View PDF", ToastLength.Short).Show();
+                Console.WriteLine("error: " + ex.Message);
+            }
+
+
         }
 
 
