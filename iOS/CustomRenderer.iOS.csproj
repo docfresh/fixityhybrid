@@ -46,7 +46,7 @@
     <OptimizePNGs>true</OptimizePNGs>
     <MtouchUseLlvm>true</MtouchUseLlvm>
     <BuildIpa>true</BuildIpa>
-    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFastDev>false</MtouchFastDev>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>

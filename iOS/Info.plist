@@ -7,9 +7,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.fresh.fixity</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.01</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0.2</string>
+	<string>1.0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -97,6 +97,10 @@
 	<string>Fixity uses your location to accurately report and show nearby issues.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Fixity uses your location to accurately report and show nearby issues.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow Fixity to access your photo library for issue photos.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow Fixity to use your camera for reporting issues.</string>
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen2</string>
 	<key>XSAppIconAssets</key>
