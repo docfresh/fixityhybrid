@@ -9,6 +9,7 @@ using System;
 using Java.IO;
 using Android.Provider;
 
+
 [assembly: ExportRenderer(typeof(HybridWebView), typeof(HybridWebViewRenderer))]
 namespace CustomRenderer.Droid
 {
@@ -37,6 +38,25 @@ namespace CustomRenderer.Droid
                 webView.Settings.JavaScriptEnabled = true;
                 webView.SetWebViewClient(new JavascriptWebViewClient($"javascript: {JavascriptFunction}"));
                 SetNativeControl(webView);
+
+                MessagingCenter.Subscribe<object>(this, "GoBack", (sender) => {
+                    //if (webView.CanGoBack() == true)
+                    //{
+                    //    webView.GoBack();
+                    //}
+                    //webView.EvaluateJavascript("App.HitFormBackButtonIfPossible();", new BackButtonAttemptCallback()); //handle the back button behavior we want in WiseJ.
+                    webView.EvaluateJavascript("App.HitFormBackButtonIfPossible(function(result) { });", new BackButtonAttemptCallback()); //handle the back button behavior we want in WiseJ.
+                    
+                    
+                    //webView.EvaluateJavascript("eval(3);", new BackButtonAttemptCallback()); //handle the back button behavior we want in WiseJ.
+
+                });
+
+                MessagingCenter.Subscribe<object>(this, "QuitApp", (sender) => {
+
+                    Java.Lang.JavaSystem.Exit(0);//quit
+                });
+
             }
             if (e.OldElement != null)
             {
@@ -160,6 +180,9 @@ namespace CustomRenderer.Droid
             {
                 geocallback.Invoke(origin, true, false);
             }
+
+
+
 
         }
     }

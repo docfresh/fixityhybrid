@@ -12,9 +12,11 @@ namespace CustomRenderer
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ContentPage1 : ContentPage
 	{
-		public ContentPage1 ()
+		public ContentPage1()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
+
+
 	}
 }
