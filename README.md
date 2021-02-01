@@ -1,6 +1,8 @@
 HybridWebView Custom Renderer
 =============================
 
+fixityhybrid is a Xamarin.Forms-based native wrapper for Web apps.  It's being used for Fixity's iOS and Android apps.
+
 This fork enhances David Britch's original sample here:  [Implementing a HybridWebView](http://developer.xamarin.com/guides/cross-platform/xamarin-forms/custom-renderer/hybridwebview/).
 
 David's code demonstrated a cutom renderer for a 'HybridWebView' custom control, to enhance the platform-specific web controls to allow C# code to be invoked from JavaScript.
