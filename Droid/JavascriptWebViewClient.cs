@@ -19,6 +19,9 @@ namespace CustomRenderer.Droid
 
         public override void OnPageFinished(WebView view, string url)
         {
+            var decodedOriginalUrl = System.Net.WebUtility.UrlDecode(view.OriginalUrl);
+            var decodedUrl = System.Net.WebUtility.UrlDecode(url);
+
             base.OnPageFinished(view, url);
             view.EvaluateJavascript(_javascript, null);
         }
@@ -30,6 +33,9 @@ namespace CustomRenderer.Droid
         {
             //Handles external links, to load them outside of the webview , in the system default browser.
             //Click on a georeferenced link
+
+            var decodedOriginalUrl = System.Net.WebUtility.UrlDecode(view.OriginalUrl);
+            var decodedUrl = System.Net.WebUtility.UrlDecode(url);
             if (url != null && url.Contains("download.wx"))
             {
                 //Xamarin.Forms.Device.OpenUri(new Uri(url.AbsoluteString));
@@ -45,7 +51,7 @@ namespace CustomRenderer.Droid
                     // Do things the old way
                     OpenLocalPdfClassic(view, strFilename);
                 }
-                
+
                 return true;
             }
             else if (url != null && url.StartsWith("https://fixity.io"))
@@ -61,21 +67,27 @@ namespace CustomRenderer.Droid
 
                 return false; //The correct way to continue loading a given URL is to simply return false, without calling WebView.loadUrl(String).
             }
-            else if (url!= null && (url.StartsWith("mailto:") || url.StartsWith("tel:") || url.StartsWith("sms:") || url.StartsWith("geo:")))
+            else if (url != null && (url.StartsWith("mailto:") || url.StartsWith("tel:") || url.StartsWith("sms:") || url.StartsWith("geo:")))
             {
                 var geoUri = Android.Net.Uri.Parse(url);
                 var mapIntent = new Intent(Intent.ActionView, geoUri);
                 view.Context.StartActivity(mapIntent);
                 return true; //abort loading in the webview.
             }
-            else if (url!= null && url.Contains("facebook.com") && (url.Contains("dialog/oauth?") || url.Contains("login.php")))
+            else if (url.Contains("dialog/oauth") && url.Contains("ret=login&fbapp_pres"))
+            {
+                return false;//result is from facebook refer after login success or attempt
+            }
+            else if (url != null && url.Contains("facebook.com") && (url.Contains("dialog/oauth?") || url.Contains("login.php")))
             {
                 //do a facebook login or say that we cant.
-                Xamarin.Forms.DependencyService.Get<IMessage>().LongAlert("Facebook login does not work yet on hybrid app.");
-                return true;  //abort loading in the webview.
-                //return false;//give embedded oauth a chance.
+                //Xamarin.Forms.DependencyService.Get<IMessage>().LongAlert("Facebook login does not work yet on hybrid app.");
+                //return true;  //abort loading in the webview.
+
+
+                return false;//give embedded oauth a chance.
             }
-            else if (url != null && url.Contains("facebook.com")) 
+            else if (url != null && url.Contains("facebook.com"))
             {
                 //facebook share dialog.
                 //Xamarin.Forms.DependencyService.Get<IMessage>().ShortAlert("Facebook login not yet working on hybrid app.");

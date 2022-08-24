@@ -7,6 +7,7 @@ using Android.Gms.Common.Apis;
 using Android.Gms.Location;
 using System.Threading.Tasks;
 using Android;
+using Plugin.FacebookClient;
 
 namespace CustomRenderer.Droid
 {
@@ -23,6 +24,7 @@ namespace CustomRenderer.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             turnOnGps(this);

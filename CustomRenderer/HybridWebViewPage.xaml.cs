@@ -20,6 +20,12 @@ namespace CustomRenderer
 			{
 				MessagingCenter.Send<object>(this, "QuitApp");
 			}
+
+			if (data.StartsWith("fblogin:")) {
+				int pos = data.IndexOf(":");
+				string email = data.Substring(pos + 1);
+				MessagingCenter.Send<object, string>(this, "fbauth", email);
+			}
 		}
 
 

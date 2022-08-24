@@ -57,7 +57,14 @@ namespace CustomRenderer.Droid
                     Java.Lang.JavaSystem.Exit(0);//quit
                 });
 
-            }
+                MessagingCenter.Subscribe<object, string>(this, "fbauth", (sender, arg) =>
+                {
+                    var emailAuthenticated = (string)arg;
+                    webView.EvaluateJavascript("App.frmLoginWindow.ChangeFacebookStatus();", null);//tell wisej FB was auth'd (roundabout way) and to login with email address.
+
+                });
+
+                }
             if (e.OldElement != null)
             {
                 Control.RemoveJavascriptInterface("jsBridge");

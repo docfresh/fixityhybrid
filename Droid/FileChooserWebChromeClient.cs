@@ -38,10 +38,38 @@ namespace CustomRenderer.Droid
             }
             catch (Exception)
             {
-
+                //Log.
             }
             return true;
         }
+
+        /// <summary>
+        /// https://stackoverflow.com/questions/12648099/making-facebook-login-work-with-an-android-webview
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="isDialog"></param>
+        /// <param name="isUserGesture"></param>
+        /// <param name="resultMsg"></param>
+        /// <returns></returns>
+        //public override bool OnCreateWindow(WebView view, bool isDialog, bool isUserGesture, Message resultMsg)
+        //{
+        //    WebView mWebviewPop = new WebView(Android.App.Application.Context);
+        //    mWebviewPop.SetVerticalScrollbarOverlay(false);
+        //    mWebviewPop.SetHorizontalScrollbarOverlay(false);
+        //    mWebviewPop.SetWebViewClient(new WebViewClient());
+        //    mWebviewPop.Settings.JavaScriptEnabled = true;
+        //    mWebviewPop.Settings.SavePassword = true;
+        //    mWebviewPop.LayoutParameters = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+            
+        //    mContainer.addView(mWebviewPop);
+        //    WebView.WebViewTransport transport = (WebView.WebViewTransport)resultMsg.obj;
+        //    transport.setWebView(mWebviewPop);
+        //    resultMsg.sendToTarget();
+
+        //    return true;
+
+        //    'return base.OnCreateWindow(view, isDialog, isUserGesture, resultMsg);
+        //}
     }
 
 }
