@@ -7,9 +7,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.fresh.fixity</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.01</string>
+	<string>1.04</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.1</string>
+	<string>1.0.4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -86,10 +86,6 @@
 			<key>CFBundleTypeName</key>
 			<string>Document Type 1</string>
 		</dict>
-	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Fixity uses your location to accurately report and show nearby issues.</string>
