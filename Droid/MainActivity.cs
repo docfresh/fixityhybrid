@@ -7,7 +7,7 @@ using Android.Gms.Common.Apis;
 using Android.Gms.Location;
 using System.Threading.Tasks;
 using Android;
-using Plugin.FacebookClient;
+//using Plugin.FacebookClient;
 
 namespace CustomRenderer.Droid
 {
