@@ -1,102 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xamarin.Forms.Platform.UWP;
 using CustomRenderer;
 using CustomRenderer.UWP;
-using Xamarin.Forms.Platform.UWP;
+using Xamarin.Forms;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Web.WebView2.Core;
+// Ensure you've added the Microsoft.Web.WebView2 NuGet package to the UWP project.
+[assembly: ExportRenderer(typeof(HybridWebView), typeof(HybridWebViewRenderer))]
 
-[assembly:ExportRenderer(typeof(HybridWebView), typeof(HybridWebViewRenderer))]
 namespace CustomRenderer.UWP
 {
-    public class HybridWebViewRenderer : ViewRenderer<HybridWebView, Windows.UI.Xaml.Controls.WebView>
+    public class HybridWebViewRenderer : ViewRenderer<HybridWebView, Microsoft.UI.Xaml.Controls.WebView2>
     {
-        const string JavaScriptFunction = "function invokeCSharpAction(data){window.external.notify(data);}";
+        const string JavaScriptFunction = "function invokeCSharpAction(data){window.chrome.webview.postMessage(data);}";
 
-        protected override void OnElementChanged(ElementChangedEventArgs<HybridWebView> e)
+        protected override async void OnElementChanged(ElementChangedEventArgs<HybridWebView> e)
         {
             base.OnElementChanged(e);
 
             if (Control == null)
             {
-                SetNativeControl(new Windows.UI.Xaml.Controls.WebView());
+                var webView = new Microsoft.UI.Xaml.Controls.WebView2();
+                await webView.EnsureCoreWebView2Async();
+                SetNativeControl(webView);
             }
+
             if (e.OldElement != null)
             {
-                Control.NavigationCompleted -= OnWebViewNavigationCompleted;
-                Control.PermissionRequested += OnPermissionRequested;
-                Control.NewWindowRequested += OnNewWindowRequested;
-                Control.NavigationStarting += OnNavigationStarting;
-                Control.ScriptNotify -= OnWebViewScriptNotify;
+                // Unsubscribe from old element events
+                Control.CoreWebView2.WebMessageReceived -= OnWebMessageReceived;
             }
+
             if (e.NewElement != null)
             {
-                Control.NavigationCompleted += OnWebViewNavigationCompleted;
-                Control.PermissionRequested += OnPermissionRequested;
-                Control.NewWindowRequested  += OnNewWindowRequested;
-                Control.NavigationStarting += OnNavigationStarting;
-                Control.ScriptNotify += OnWebViewScriptNotify;
-                //Control.Source = new Uri(string.Format("ms-appx-web:///Content//{0}", Element.Uri));
+                // Initialize or re-initialize
                 Control.Source = new Uri("https://fixity.io/?hybrid=1");
+                Control.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(JavaScriptFunction);
+                Control.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
+
+                // Implement additional setup or event subscription as needed
             }
         }
 
-        async void OnWebViewNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        private void OnWebMessageReceived(CoreWebView2 sender, CoreWebView2WebMessageReceivedEventArgs args)
         {
-            if (args.IsSuccess)
-            {
-                // Inject JS script
-                await Control.InvokeScriptAsync("eval", new[] { JavaScriptFunction });
-            }
+            // Handle messages received from web content
+            var message = args.TryGetWebMessageAsString();
+            Element?.InvokeAction(message);
         }
 
-        void OnWebViewScriptNotify(object sender, NotifyEventArgs e)
-        {
-            Element.InvokeAction(e.Value);
-        }
-
-        void OnPermissionRequested(WebView sender, WebViewPermissionRequestedEventArgs args)
-        {
-            if (args.PermissionRequest.PermissionType == WebViewPermissionType.Geolocation) 
-            {
-                args.PermissionRequest.Allow();
-            }
-            if (args.PermissionRequest.PermissionType == WebViewPermissionType.Media)
-            {
-                args.PermissionRequest.Allow();
-            }
-
-        }
-
-        //https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.webview.newwindowrequested
-        void OnNewWindowRequested(WebView sender, WebViewNewWindowRequestedEventArgs args)
-        {
-
-        }
-
-        //https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.webview.navigationstarting
-        void OnNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
-        {
-            //https://stackoverflow.com/questions/49431603/download-pdf-to-localfolder-in-uwp
-
-            string url = args.Uri.ToString();
-            if (url.ToLower().Contains("download.wx"))
-            {
-                //wisej download: cancel navigation and open in new Safari window.
-                //decisionHandler(WKNavigationActionPolicy.Cancel);
-                //Device.OpenUri(new Uri(url.AbsoluteString));
-
-                //Ideally, this would download the file to the users's home folder and then open it locally.
-                args.Cancel = true; //cancel navigation , we are handling it.
-                //Xamarin.Forms.DependencyService.Get<IMessage>().ShortAlert("Downloading...");
-                var fileName = MyDownloader.DownloadAndWriteFile(url);
-                //Xamarin.Forms.DependencyService.Get<IMessage>().CancelAlert(); //kill alert so preview window can pop up in next call.
-                MyDownloader.OpenFileByNameAsync(fileName);
-            }
-
-        }
-
+        // Additional methods and event handlers as necessary
     }
 }
