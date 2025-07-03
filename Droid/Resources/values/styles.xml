@@ -23,6 +23,10 @@
     </style>
 
   <style name="MainTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
+    <!-- turn OFF Android 12+ splash so your windowBackground is used -->
+    <!--
+    <item name="android:windowSplashScreenEnabled">false</item>-->
+
     <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>

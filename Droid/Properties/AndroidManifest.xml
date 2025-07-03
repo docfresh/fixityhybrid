@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="6" android:versionName="1.04" package="com.fresh.fixityio" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="21" />
-	<uses-sdk android:targetSdkVersion="31" />
-	<application android:label="Fixity.io">
+  <!-- single uses-sdk with both attributes -->
+  <uses-sdk
+      android:minSdkVersion="21"
+      android:targetSdkVersion="35" />
+
+  <application android:label="Fixity.io">
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.fresh.fixityio.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
 		</provider>

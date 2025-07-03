@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="FreshSoftware.Fixity" Publisher="CN=0DCB1C6E-34CD-4851-B12E-1C1F3D891F17" Version="1.0.5.0" />
-  <mp:PhoneIdentity PhoneProductId="570450d0-0333-4eef-a10d-fba0beb0e809" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="FreshSoftware.Fixity" Publisher="CN=0DCB1C6E-34CD-4851-B12E-1C1F3D891F17" Version="1.0.17.0" />
+  <mp:PhoneIdentity PhoneProductId="1e8079d3-045b-4431-8405-c2975ca0b186" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Fixity</DisplayName>
     <PublisherDisplayName>Fresh Software</PublisherDisplayName>
